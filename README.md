@@ -1,3 +1,5 @@
+This repository provides a realtime maze generation as well as solving them using various algorithms
+
 ### Maze generation
 
 c.f : https://en.wikipedia.org/wiki/Maze_generation_algorithm 
