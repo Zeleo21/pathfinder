@@ -37,6 +37,8 @@ export function MazeComponent() {
  }
 
 
+ 
+
 
   const iterativeDFS = async () => {
       const startNode = maze[0];
@@ -59,74 +61,32 @@ export function MazeComponent() {
             const currentNode: Cell = stack.pop();
 
             console.log('currentNode : ', currentNode);
-            const neighbors = MazeGenerator.getNeighbors(maze, currentNode);
+            const neighbors = MazeGenerator.getNeighbors(currentNode, newMaze);
 
             console.log('neighbors : ', neighbors);
             if (neighbors.length > 0) {
                 stack.push(currentNode);
 
                 const randomUnvisitedNeighbor: Cell = neighbors[Math.floor(Math.random() * neighbors.length)];
-              // Find the index of the chosen cell in the state
-       const chosenCellIndex = maze.findIndex(c => c.x === randomUnvisitedNeighbor.x && c.y === randomUnvisitedNeighbor.y);
+       const chosenCellIndex = newMaze.findIndex(c => c.x === randomUnvisitedNeighbor.x && c.y === randomUnvisitedNeighbor.y);
 
-       // Create a new maze array to update the state
-       const updatedMaze = [...maze];
+        console.log('chosenCellIndex : ', chosenCellIndex);
 
       if (chosenCellIndex !== -1) {
-        // Update the cell's properties
-        updatedMaze[chosenCellIndex] = {
-          ...updatedMaze[chosenCellIndex],
+        newMaze[chosenCellIndex] = {
+          ...newMaze[chosenCellIndex],
           color: CellColor.WHITE,
           visited: true
         };
 
-        // Add the updated cell to the stack
-        stack.push(updatedMaze[chosenCellIndex]);
+        stack.push(newMaze[chosenCellIndex]);
       }
 
-      setMaze(updatedMaze);
+      setMaze([...newMaze]);
             }
-            await delay(500);
+            await delay(50);
         }
   };
-
-
-  // const iterativeDFS = async (maze: Maze, startNode: Cell ) => {
-
-
-  // console.log(startNode);
-  // const stack = [startNode];
-
-  // 
-
-  // while (stack.length > 0) {
-  //   const currentNode: Cell = stack.pop();
-  //   console.log('currentNode : ', currentNode);
-  //   const neighbors = MazeGenerator.getNeighbors(maze, currentNode);
-  //   console.log('neighbors : ',  neighbors);
-  //   const nbrOfUnvisitedNeighbors = neighbors.length;
-  //   
-  //   // We get a Random unvisited neighbor
-  //   const randomUnvisitedNeighbor: Cell = neighbors[Math.floor(Math.random() * nbrOfUnvisitedNeighbors)];
-
-  //   const chosenCell: Cell = {...randomUnvisitedNeighbor, color: CellColor.WHITE, visited: true};
-
-  //   stack.push(chosenCell);
-
-
-  //   setMaze(prevMaze => {
-  //     const newMaze = [...prevMaze, chosenCell];
-  //     return newMaze;
-  //   });
-
-  //   await delay(50); 
-
-  //   }
-  // } 
-
-
-
-
 
 
  const [maze, setMaze] = useState<Maze>(MazeGenerator.generateMazeStructure());
@@ -138,7 +98,7 @@ export function MazeComponent() {
     // }, 1000);
 
     // return () => clearInterval(interval);
-    iterativeDFS(maze, maze[0]);
+    iterativeDFS();
   }, []);
 
     return (

@@ -5,8 +5,8 @@ export const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export class MazeGenerator {
 
-  public static wallWidth = 50;
-  public static wallHeight = 50;
+  public static wallWidth = 10;
+  public static wallHeight = 10;
 
 
 
@@ -29,18 +29,11 @@ export class MazeGenerator {
     return cells;
   }
 
-  public static updateMaze(maze: Maze): Maze {
-    const newMaze = [...maze];
-    const random = Math.floor(Math.random() * 10);
-    newMaze[random] = {...newMaze[random], color: CellColor.WHITE };
-    return newMaze;
-  }
-
-  public static getNeighbors(maze: Maze, cell: Cell): Cell[] {
+ public  static getNeighbors = (cell: Cell, maze: Maze): Cell[] => {
   const neighbors: Cell[] = [];
   const cellX = cell.x;
   const cellY = cell.y;
-  const cellSize = this.wallWidth;
+  const cellSize = MazeGenerator.wallWidth;
 
   const possibleNeighbors = [
     { x: cellX, y: cellY - cellSize }, 
@@ -58,6 +51,8 @@ export class MazeGenerator {
 
   return neighbors;
 }
+
+
 
 }
 
