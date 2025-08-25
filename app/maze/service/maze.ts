@@ -29,31 +29,6 @@ export class MazeGenerator {
     return cells;
   }
 
- public  static getNeighbors = (cell: Cell, maze: Maze): Cell[] => {
-  const neighbors: Cell[] = [];
-  const cellX = cell.x;
-  const cellY = cell.y;
-  const cellSize = MazeGenerator.wallWidth;
-
-  const possibleNeighbors = [
-    { x: cellX, y: cellY - cellSize }, 
-    { x: cellX, y: cellY + cellSize }, 
-    { x: cellX - cellSize, y: cellY }, 
-    { x: cellX + cellSize, y: cellY }, 
-  ];
-
-  for (const pos of possibleNeighbors) {
-    const neighborCell = maze.find(c => c.x === pos.x && c.y === pos.y && c.visited === false);
-    if (neighborCell) {
-      neighbors.push(neighborCell);
-    }
-  }
-
-  return neighbors;
-}
-
-
-
 }
 
 
