@@ -1,22 +1,23 @@
-import { mazeHeight, mazeWidth } from "../maze";
+import { canvasHeight, canvasWidth } from "../components/canvas";
 import { Cell, CellColor, type Maze } from "./cell";
 
 export const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
 export class MazeGenerator {
 
-  public static wallWidth = 10;
-  public static wallHeight = 10;
-
+  public static wallWidth = 25;
+  public static wallHeight = 25;
+  public static startingXCell = 0;
+  public static startingYCell = 0;
 
 
   public static generateMazeStructure(): Maze {
-    const nbColumns = mazeWidth / MazeGenerator.wallWidth;
-    const nbLines = mazeHeight / MazeGenerator.wallHeight;
+    const nbColumns = canvasWidth / MazeGenerator.wallWidth;
+    const nbLines = canvasHeight / MazeGenerator.wallHeight;
 
     let x = 0;
     let y = 0;
-    const cells = [];
+    const cells: Maze = [];
 
     for(let i = 0; i < nbColumns; i++) {
       for(let j = 0; j < nbLines; j++) {

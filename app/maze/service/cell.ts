@@ -19,7 +19,6 @@ export class Cell {
   color: CellColor 
   walls: Wall[]; 
   visited: boolean;
-  // add other properties later on
   
 
   constructor(x: number , y: number, color: CellColor) {
@@ -111,4 +110,8 @@ export class Cell {
     this.walls = newWalls;
     return newWalls;
   }
+
+  public isFirstNodeOfMaze() {
+    return this.x === MazeGenerator.startingXCell && this.y === MazeGenerator.startingYCell; 
   }
+}
