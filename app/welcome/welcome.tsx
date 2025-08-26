@@ -1,9 +1,9 @@
-import { MazeComponent } from "~/maze/maze";
+import { Canvas } from "~/maze/components/canvas";
 
 export function Welcome() {
   return (
   <div>
-    <MazeComponent/>
+    <Canvas/>
   </div>
   )
 }
