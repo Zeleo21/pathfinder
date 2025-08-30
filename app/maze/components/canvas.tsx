@@ -32,7 +32,7 @@ export function Canvas() {
      <div>
       <div className="flex justify-center m-10">
         <div className="flex space-x-5">
-          <button onClick={handleStart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Start </button>
+          <button onClick={handleStart} className="bg-white hover:bg-blue-700 text-black font-bold py-2 px-4 rounded"> Start </button>
         </div>
       </div>
       <div className="flex justify-center m-10">  
