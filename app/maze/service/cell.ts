@@ -8,6 +8,10 @@ export enum CellColor {
   BLACK = "black",
   WHITE = "white",
   RED = "red",
+  ORANGE = "orange",
+  YELLOW = "yellow",
+  GREEN = "green",
+  BLUE = "blue",
 }
 
 export const nbOfWalls = 4;

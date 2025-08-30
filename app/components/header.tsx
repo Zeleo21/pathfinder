@@ -6,9 +6,9 @@ export default function Header() {
             <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
                 <a className="block text-teal-600 dark:text-teal-300" href="#">
                     <span className="sr-only">Home</span>
-                    <div className="flex items-center justify-center">
+                    <NavLink to="/home">
                         <img src="/square.svg" alt="Logo" className="h-12 w-12"/>
-                    </div>
+                    </NavLink>
                 </a>
 
                 <div className="flex flex-1 items-center justify-between">
