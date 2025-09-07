@@ -1,5 +1,3 @@
-import { Stage, Layer, Rect, Path } from 'react-konva';
-import React, { Fragment, useEffect, useState, type JSX } from 'react';
 import type { Cell, Maze } from '../service/cell';
 import { delay } from '../service/maze';
 import type { WallPlacement } from '../service/wall';
@@ -9,7 +7,7 @@ import type { WallPlacement } from '../service/wall';
 
 
 export const iterativeDFS = async(maze: Maze, setMaze: (maze: Maze) => void,
-                                  setCurrentCell: (cell: Cell) => void) => {
+                                  setCurrentCell: (cell: Cell) => void, signal: { shouldStop: boolean}) => {
   const startNode = maze[0];
   const stack: Cell[] = [];
   const currentMaze = [...maze];
@@ -23,6 +21,9 @@ export const iterativeDFS = async(maze: Maze, setMaze: (maze: Maze) => void,
   await delay(50);
 
   while(stack.length > 0) {
+    if(signal.shouldStop) {
+      return;
+    }
     const currentNode: Cell = stack.pop();
     setCurrentCell(currentNode);
     const neighbors = currentNode.getNeighbors(currentMaze); 
@@ -54,7 +55,7 @@ export const iterativeDFS = async(maze: Maze, setMaze: (maze: Maze) => void,
 
       }
       setMaze([...currentMaze]);
-      await delay(20);
+      await delay(5);
 
     }
 

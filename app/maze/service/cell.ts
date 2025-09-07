@@ -1,5 +1,6 @@
 import { MazeGenerator } from "./maze";
 import { WallPlacement, Wall } from "./wall";
+import type {MazeConfig} from "~/maze/service/config";
 
 
 export type Maze = Cell[];
@@ -14,8 +15,6 @@ export enum CellColor {
   BLUE = "blue",
 }
 
-export const nbOfWalls = 4;
-
 export class Cell {
 
   x: number;
@@ -23,19 +22,21 @@ export class Cell {
   color: CellColor 
   walls: Wall[]; 
   visited: boolean;
+  config: MazeConfig;
   
 
-  constructor(x: number , y: number, color: CellColor) {
+  constructor(x: number , y: number, color: CellColor, config: MazeConfig) {
     this.x = x;
     this.y = y;
     this.color = color;
     this.visited = false;
     this.walls = [
       new Wall(x, y, CellColor.WHITE, WallPlacement.TOP),
-      new Wall(x, y + MazeGenerator.wallHeight , CellColor.WHITE, WallPlacement.BOTTOM),
+      new Wall(x, y + config.wallSize , CellColor.WHITE, WallPlacement.BOTTOM),
       new Wall(x, y, CellColor.WHITE, WallPlacement.LEFT),
-      new Wall(x + MazeGenerator.wallWidth, y, CellColor.WHITE, WallPlacement.RIGHT),
+      new Wall(x + config.wallSize, y, CellColor.WHITE, WallPlacement.RIGHT),
     ];
+    this.config = config;
   } 
 
 
@@ -70,7 +71,7 @@ export class Cell {
     const neighbors: Cell[] = [];
     const cellX = this.x;
     const cellY = this.y;
-    const cellSize = MazeGenerator.wallWidth;
+    const cellSize = this.config.wallSize;
 
     const possibleNeighbors = [
       { x: cellX, y: cellY - cellSize }, 
@@ -116,6 +117,6 @@ export class Cell {
   }
 
   public isFirstNodeOfMaze() {
-    return this.x === MazeGenerator.startingXCell && this.y === MazeGenerator.startingYCell; 
+    return this.x === this.config.start.x && this.y === this.config.start.y;
   }
 }

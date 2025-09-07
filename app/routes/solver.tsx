@@ -1,10 +1,12 @@
+import Header from "~/components/header";
+import {Canvas} from "~/maze/components/canvas";
 
 
 export default function Solver() {
   return (
     <div>
-      <h1>Solver Page</h1>
-      <p>This is the solver page content.</p>
+        <Header></Header>
+        <Canvas></Canvas>
     </div>
   );
 }
