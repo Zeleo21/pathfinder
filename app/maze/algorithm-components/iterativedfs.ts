@@ -24,7 +24,10 @@ export const iterativeDFS = async(maze: Maze, setMaze: (maze: Maze) => void,
     if(signal.shouldStop) {
       return;
     }
-    const currentNode: Cell = stack.pop();
+    const currentNode: Cell | undefined = stack.pop();
+    if(!currentNode) {
+      continue;
+    }
     setCurrentCell(currentNode);
     const neighbors = currentNode.getNeighbors(currentMaze); 
 
