@@ -6,6 +6,5 @@ c.f : https://en.wikipedia.org/wiki/Maze_generation_algorithm
 
 - using iterative implementation (with stack) : 50x50 maze
 - 
-https://github.com/user-attachments/assets/b89ee709-bdf3-495e-95c0-0b2603425271
+<img width="820" height="810" alt="Recording 2026-06-05 175931" src="https://github.com/user-attachments/assets/e0ef07c8-f107-48ec-83fe-828ab219a835" />
 
-<img width="507" height="499" alt="image" src="https://github.com/user-attachments/assets/acf515b4-7f7e-4312-afa8-6626145ef84f" />
